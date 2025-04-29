@@ -10,9 +10,7 @@ class vector {
 public:
     typedef T* iterator;
     typedef const T* const_iterator;
-    vector()
-    {
-    }
+    vector() { }
     vector(const vector<T>& v)
     {
         reserve(v.capacity()); // 减少扩容次数
@@ -26,6 +24,16 @@ public:
         while (first != last) {
             push_back(*first);
             first++;
+        }
+    }
+    vector(std::initializer_list<T> il)//可以不用加引用，和const原因：这里的initializer_list本来要的就是浅拷贝
+        //实质上是il的指针分别指向常量数组的第一个元素和常量数组的最后一个元素，不用拷贝，直接就构造了，因此加上const和引用对性能提升没有影响
+        //{1，2，3，4，5，6，78，75}
+    {
+        reserve(il.size());
+        for (auto& e : il)
+        {
+            push_back(e);
         }
     }
     ~vector()
@@ -62,8 +70,8 @@ public:
         if (n > capacity()) {
             size_t old_size = size();
             T* tmp = new T[n];
-            // memcpy(tmp, _start, old_size * sizeof(T));//这里是按照字节拷贝的，如果使用string，_start和tmp中的_str指向的是同一个字符串，会导致浅拷贝的问题
-            // 虽然vector解决了浅拷贝，但是vector里面的对象没有解决浅拷贝
+            // memcpy(tmp, _start, old_size * sizeof(T));//这里是按照字节拷贝的，如果使用string,_start和tmp中的_str指向的是同一个字符串，会导致浅拷贝的问题
+            // 虽然vector解决了浅拷贝，但是没有解决vector里面的对象里的浅拷贝
             // 解决方法：
             for (size_t i = 0; i < size(); i++) {
                 tmp[i] = _start[i]; // 这里和memcpy不同，是通过调用对应的对象的赋值，赋值是对应对象的深拷贝，这样就可以防止浅拷贝的问题
