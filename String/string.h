@@ -284,7 +284,7 @@ const int string::npos = -1;
 std::ostream& operator<<(std::ostream& output, const string& s)
 {
     for (auto ch : s)//如果是成员函数，则第一个参数默认是this指针，会导致不能传入两个参数，因此使用全局
-        //不使用友元的原因，使用范围for或者迭代器，可用不用访问私有成员
+        //不使用友元的原因，使用范围for或者迭代器，可以不用访问私有成员
     {
         output<<s;
     }
