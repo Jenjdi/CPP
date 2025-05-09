@@ -32,12 +32,15 @@ private:
     }
     void AdjustDown(HeapDataType* arr, int parent)
     {
-        int child = arr[parent * 2 + 1] < arr[parent * 2] ? parent * 2 + 1 : parent * 2;
+        int child=parent*2+1;
         while (child < size()) {
+            if(child+1<size()&&arr[child+1]<arr[child])
+            {
+                child++;
+            }
             if (arr[child] < arr[parent]) {
                 swap(&arr[parent], &arr[child]);
                 parent = child;
-                child = arr[parent * 2 + 1] < arr[parent * 2] ? parent * 2 + 1 : parent * 2;
             } else {
                 break;
             }

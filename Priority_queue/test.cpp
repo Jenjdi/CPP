@@ -23,6 +23,6 @@ int main()
         std::cout << pq.top() << std::endl;
         pq.pop();
     }
-    priority_queue<A*,std::vector<A*>>
+    priority_queue<A*,std::vector<A*>> pq;
     
 }
