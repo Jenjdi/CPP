@@ -12,7 +12,7 @@ int main()
     cout << bst[7]<<endl;
     for (auto e:arr)
     {
-        bst.erase(e);
+        bst.erase(e,e);
         bst.inorder();
         cout << endl;
     }
