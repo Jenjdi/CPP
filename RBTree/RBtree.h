@@ -29,8 +29,34 @@ class RBtree
 
 private:
     Node* _root=nullptr;
-
+    bool check(Node* root,int blacknum,int refNum)
+    {
+        if (root == nullptr)
+            return true;
+        if (root->_col == Black)
+            blacknum++;
+        return check(root->_left, blacknum, refNum) && check(root->_right, blacknum, refNum);
+    }
+    
 public:
+    bool isbalance()
+    {
+        if (_root==Red)
+        {
+            return false;
+        }
+        int refNum = 0;
+        Node* cur = _root;
+        while (cur)
+        {
+            if (cur->_col == Black)
+            {
+                refNum++;
+            }
+        }
+        return check(_root, 0, refNum);
+
+    }
     bool Insert(const std::pair<K,V>& kv)
     {
         if (_root == nullptr)
@@ -75,7 +101,7 @@ public:
                 {
                     uncle->_col=Black;
                     grandparent->_col = Red;
-                    cur=parent;
+                    cur=grandparent;
                     parent = cur->_parent;
                 }
                 else//叔叔不存在或者存在且为黑，右旋+变色
@@ -104,7 +130,7 @@ public:
                 {
                     uncle->_col = Black;
                     grandparent->_col = Red;
-                    cur = parent;
+                    cur = grandparent;
                     parent = cur->_parent;
                 }
                 else//叔叔不存在或者存在且为黑，右旋+变色
@@ -127,4 +153,60 @@ public:
         }
         return true;
     }
+    void RotateL(Node* parent)
+    {
+        Node* subR = parent->_right;
+        Node* subRL=subR->_left;
+        Node* grandparent = parent->_parent;
+        subR->_left=parent;
+        parent->_parent = subR;
+        parent->_right = subRL;
+        if (subRL)
+        {
+            subRL->_parent = parent;
+        }
+        subR->_parent = grandparent;
+        if (parent == _root)
+        {
+            _root = subR;
+        }
+        else
+        {
+            if (parent == grandparent->_left)
+            {
+                grandparent->_left = subR;
+            }
+            else
+            {
+                grandparent->_right = subR;
+            }
+        }
+    }
+    void RotateR(Node* parent)
+    {
+        Node* subL=parent->_left;
+        Node* subLR = subL->_right;
+        Node* grandparent = parent->_parent;
+        subL->_right = parent;
+        parent->_parent=subL;
+        parent->_left=subLR;
+        if (subLR)
+        {
+            subLR->_parent = parent;
+        }
+        subL->_parent = grandparent;
+        if (parent == _root)
+        {
+            _root = subL;
+        }
+        else
+        {
+            if (parent == grandparent->_left) {
+                grandparent->_left = subL;
+            } else {
+                grandparent->_right = subL;
+            }
+        }
+    }
+    
 };
