@@ -133,6 +133,8 @@
     <ClCompile Include="args.cpp" />
     <ClCompile Include="c++11.cpp" />
     <ClCompile Include="function.cpp" />
+    <ClCompile Include="ptr.cpp" />
+    <ClCompile Include="thread.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

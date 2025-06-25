@@ -46,39 +46,39 @@
 //    cout<<f3(1.1, 2.1)<<endl;
 //    cout<<f4(A(), 1.1, 2.1);
 //}
-#include<iostream>
-using namespace std;
-
-class A {
-public:
-    int _a;
-};
-class B :  public A {
-};
-class C :  public A {
-};
-class D : public B, public C {
-};
-class A1 {
-public:
-    int _a;
-};
-class B1 : virtual public A1 {
-};
-class C1 : virtual public A1 {
-};
-class D1 : public B1, public C1 {
-};
-int main()
-{
-    
-    D d;
-    D1 d1;
-    cout << "sizeof:d no virtual version" << sizeof(d) << endl;
-    cout << "sizeof:d1 virtual version" << sizeof(d1) << endl;
-    cout << "d.B::_a£º" << &d.B::_a << endl;
-    cout << "d.C::_a" << &d.C::_a << endl;
-    cout << "d.A::_a" << &d.A::_a << endl;
-    cout << "d.B::A::_a" << &d.B::A::_a << endl;
-    cout << "d.C::A::_a" << &d.C::A::_a << endl;
-}
+//#include<iostream>
+//using namespace std;
+//
+//class A {
+//public:
+//    int _a;
+//};
+//class B :  public A {
+//};
+//class C :  public A {
+//};
+//class D : public B, public C {
+//};
+//class A1 {
+//public:
+//    int _a;
+//};
+//class B1 : virtual public A1 {
+//};
+//class C1 : virtual public A1 {
+//};
+//class D1 : public B1, public C1 {
+//};
+//int main()
+//{
+//    
+//    D d;
+//    D1 d1;
+//    cout << "sizeof:d no virtual version" << sizeof(d) << endl;
+//    cout << "sizeof:d1 virtual version" << sizeof(d1) << endl;
+//    cout << "d.B::_a£º" << &d.B::_a << endl;
+//    cout << "d.C::_a" << &d.C::_a << endl;
+//    cout << "d.A::_a" << &d.A::_a << endl;
+//    cout << "d.B::A::_a" << &d.B::A::_a << endl;
+//    cout << "d.C::A::_a" << &d.C::A::_a << endl;
+//}
