@@ -1,8 +1,8 @@
-//#include <iostream>
-//#include <list>
-//#include <string>
-//#include <vector>
-//using namespace std;
+#include <iostream>
+#include <list>
+#include <string>
+#include <vector>
+using namespace std;
 ////// template<class T>
 ////// class A
 //////{
@@ -190,3 +190,10 @@
 //    HeapOnly* h2 = HeapOnly::CreateObj();
 //    HeapOnly h3(h2); // 拷贝构造被禁止，无法构造
 //}
+int main()
+{
+    for(int i=0;i<5;i++)
+    {
+        cout<<i<<endl;
+    }
+}
